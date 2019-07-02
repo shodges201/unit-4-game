@@ -15,8 +15,6 @@ var ObiWan = {
     resetStats: function(){
         this.health = 120;
         this.attack= 5;
-        this.baseAttack= 5;
-        this.counterAttack=  15;
     }
 };
 
@@ -36,8 +34,6 @@ var LukeSkywalker = {
     resetStats: function(){
         this.health = 100;
         this.attack= 6;
-        this.baseAttack= 6;
-        this.counterAttack=  20;
     }
 };
 
@@ -56,8 +52,6 @@ var DarthSidious = {
     resetStats: function(){
         this.health = 150;
         this.attack= 8;
-        this.baseAttack= 8;
-        this.counterAttack=  10;
     }
 };
 
@@ -77,8 +71,6 @@ var DarthMaul = {
     resetStats: function(){
         this.health = 100;
         this.attack= 4;
-        this.baseAttack= 4;
-        this.counterAttack=  20;
     }
 };
 
@@ -90,28 +82,29 @@ $('#attackBtn').css("visibility", "hidden");
 $('#resetBtn').css('visibility', 'hidden');
 var dead = [];
 var characterArray = [ObiWan, LukeSkywalker, DarthSidious, DarthMaul];
-var gameOver = false;
 
-$('.character').on("click", function(){
+$('.character').on("click", select);
+
+function select(){
     console.log($(this));
     console.log($(this).attr('value'));
     var idx = $(this).attr('value');
     if(!firstSelected){
         player1 = characterArray[idx];
-        $('#player1').html(this);
+        $('#player1').html(player1.div);
         firstSelected = true;
         player1.div.css('background-color', 'deepskyblue');
     }
     else if(firstSelected && !bothSelected){
-        player2 = characterArray[idx];
-        $('#player2').html(this);
-        bothSelected = true;
-        $('#attackBtn').css("visibility", "visible");
-        player2.div.css('background-color', '#c82333');
+        if(dead.indexOf(idx) == -1 && player1 !== characterArray[idx]){
+            player2 = characterArray[idx];
+            $('#player2').html(player2.div);
+            bothSelected = true;
+            $('#attackBtn').css("visibility", "visible");
+            player2.div.css('background-color', '#c82333');
+        }
     }
-})
-
-
+}
 
 $('#attackBtn').on("click", function(){
     if(player1.health > 0 && player2.health > 0){
@@ -131,22 +124,26 @@ $('#attackBtn').on("click", function(){
         dead.push(player1);
         dead.push(player2);
         $('#resetBtn').css('visibility', 'visible');
+        $('#attackBtn').css("visibility", "hidden");
+        player1.div.css("background-color", "gray");
+        player2.div.css("background-color", "gray");
     }
     else if(player1.health <= 0){
         console.log("p1 dies");
         dead.push(player1);
         dead.push(player2);
         $('#resetBtn').css('visibility', 'visible');
+        $('#attackBtn').css("visibility", "hidden");
+        player1.div.css("background-color", "gray");
     }
     else if(player2.health <= 0){
         console.log("p2 dies");
         dead.push(player2);
-        player2.container.html(player2.div);
-        player2.div.css("visibility", "hidden");
         player2 = undefined;
         healthDisplay2 = undefined;
         bothSelected = false;
         $('#attackBtn').css("visibility", "hidden");
+        player2.div.css("background-color", "gray");
     }
 });
 
@@ -154,11 +151,14 @@ function startOver(){
     for(var i =0; i < dead.length; i++){
         var replace = dead[i];
         replace.resetStats();
-        replace.div.css("visibility", "visible");
         console.log(replace);
+        console.log(replace.div.attr("value"));
+        console.log(replace.div.attr("class"));
         replace.healthDiv.text(replace.health);
         replace.container.html(replace.div);
-        replace.div.css('background-color', 'white');
+        replace.div.css("background-color", "white");
+        replace.div.css("visibility", "visible");
+        replace.div.on("click", select);
     }
 
     player1 = undefined;
