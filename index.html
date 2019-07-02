@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="Characters">Characters</h1>
+    <div class = "bigContainer">
+        <div class="characterContainer" id="obiWanContainer">
+            <div id="obiWan" class="character" value="0">
+                <p class="nameText">ObiWan</p>
+                <img class="image" src="obi.jpg">
+                <p class = health id="healthObi">120</p>
+            </div>
+        </div>
+        <div class="characterContainer" id="lukeContainer">
+            <div id="luke" class="character" value="1">
+                <p class="nameText">Luke Skywalker</p>
+                <img class="image" src="luke.jpg">
+                <p class = health id="healthLuke">100</p>
+            </div>
+        </div>
+        <div class="characterContainer" id="sidiousContainer">
+            <div id="sidious" class="character" value="2">
+                <p class="nameText">Darth Sidious</p>
+                <img class="image" src="sidious.jpg">
+                <p class = health id="healthSid">150</p>
+            </div>
+        </div>
+        <div class="characterContainer" id="maulContainer">
+            <div id="maul" class="character" value="3">
+                <p class="nameText">Darth Maul</p>
+                <img class="image" src="maul.jpg">
+                <p class = health id="healthMaul">150</p>
+            </div>
+        </div>
+    </div>
+
+    <div class ="bigContainer">
+        <div class="characterContainer" id="player1"></div>
+        <div class="characterContainer" id="player2"></div>
+    </div>
+
+    <div class = "bigContainer">
+        <button id="attackBtn">Attack</button>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+</body>
+</html>

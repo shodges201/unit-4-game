@@ -1,0 +1,39 @@
+.characterContainer{
+    height: 300px;
+    width: 300px;
+    float: left;
+}
+
+.character{
+    height: 300px;
+    width: 300px;
+    background-color: lightgreen;
+}
+
+.image{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    float: none;
+    display: block;
+}
+
+.bigContainer{
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.nameText{
+    text-align: center;
+    margin: auto;
+}
+
+.health{
+    text-align: center;
+    margin: auto;
+}
+
+#attackBtn{
+
+}
