@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 var ObiWan = {
+        name: "Obi-Wan",
         health: 120,
         attack: 5,
         baseAttack: 5,
@@ -19,6 +20,7 @@ var ObiWan = {
 };
 
 var LukeSkywalker = {
+        name: "Luke Skywalker",
         health: 100,
         attack: 6,
         baseAttack: 6,
@@ -38,6 +40,7 @@ var LukeSkywalker = {
 };
 
 var DarthSidious = {
+        name: "Darth Sidious",
         health: 150,
         attack: 8,
         baseAttack: 8,
@@ -56,6 +59,7 @@ var DarthSidious = {
 };
 
 var DarthMaul = {
+        name: "Darth Maul",
         health: 100,
         attack: 4,
         baseAttack: 4,
@@ -94,6 +98,7 @@ function select(){
         $('#player1').html(player1.div);
         firstSelected = true;
         player1.div.css('background-color', 'deepskyblue');
+        $('#topHeader').text("Choose Your Opponent");
     }
     else if(firstSelected && !bothSelected){
         if(dead.indexOf(idx) == -1 && player1 !== characterArray[idx]){
@@ -102,17 +107,21 @@ function select(){
             bothSelected = true;
             $('#attackBtn').css("visibility", "visible");
             player2.div.css('background-color', '#c82333');
+            $('#topHeader').text("Opponents Left Standing");
         }
     }
 }
 
 $('#attackBtn').on("click", function(){
+    $('#stats').html("");
     if(player1.health > 0 && player2.health > 0){
         player2.health = player2.health - player1.attack;
         player1.health = player1.health - player2.counterAttack;
-        player1.increaseAttack();
         player1.healthDiv.text(player1.health);
         player2.healthDiv.text(player2.health);
+        $('#stats').prepend("<p class=stats>You attacked "+ player2.name + " for " + player1.attack + " damage<p>");
+        $('#stats').prepend("<p class=stats>"+ player2.name + " attacked you back for " + player2.counterAttack + " damage<p>");
+        player1.increaseAttack();
     }
 
 
@@ -144,6 +153,7 @@ $('#attackBtn').on("click", function(){
         bothSelected = false;
         $('#attackBtn').css("visibility", "hidden");
         player2.div.css("background-color", "gray");
+        $('#topHeader').text("Choose Your Opponent");
     }
 });
 
@@ -167,6 +177,7 @@ function startOver(){
     bothSelected = false;
     $('#attackBtn').css("visibility", "hidden");
     $('#resetBtn').css("visibility", "hidden");
+    $('#topHeader').text("Choose Your Player");
 }
 
 $('#resetBtn').on("click", function(){

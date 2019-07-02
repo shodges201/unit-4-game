@@ -9,11 +9,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="headers">Characters</h1>
+    <h1 class="headers" id="topHeader">Choose Your Player</h1>
     <div class = "bigContainer">
         <div class="characterContainer" id="obiWanContainer">
             <div id="obiWan" class="character" value="0">
-                <p class="nameText">ObiWan</p>
+                <p class="nameText">Obi-Wan Kenobi</p>
                 <img class="image" src="assets/images/obi.jpg">
                 <p class = health id="healthObi">120</p>
             </div>
@@ -49,6 +49,7 @@
     <div class = "bigContainer">
         <button class="btn btn-danger btn-lg" id="attackBtn">Attack</button>
         <button class="btn btn-danger btn-lg" id="resetBtn">Reset</button>
+        <div id="stats"></div>
     </div>
 
     <audio controls autoplay loop id="themeSong">
