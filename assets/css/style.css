@@ -1,0 +1,59 @@
+.characterContainer{
+    height: 250px;
+    width: 300px;
+    float: left;
+}
+
+.character{
+    height: 250px;
+    width: 300px;
+    background-color: white;
+    border: 2px solid white;
+}
+.headers{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    color: white;
+    font-size: 80px;
+}
+
+.image{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    float: none;
+    display: block;
+}
+
+.bigContainer{
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.nameText{
+    text-align: center;
+    margin: auto;
+}
+
+.health{
+    text-align: center;
+    margin: auto;
+}
+
+body{
+    background-image: url("../images/background.jpg");
+}
+#resetBtn{
+    margin-left: 440px;
+}
+
+.nonLeft{
+    margin-left: 15px;
+}
+
+#themeSong{
+    float:right;
+}

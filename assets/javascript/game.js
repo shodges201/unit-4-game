@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 var ObiWan = {
         health: 120,
         attack: 5,
@@ -85,8 +87,10 @@ var player2;
 var firstSelected = false;
 var bothSelected = false;
 $('#attackBtn').css("visibility", "hidden");
+$('#resetBtn').css('visibility', 'hidden');
 var dead = [];
 var characterArray = [ObiWan, LukeSkywalker, DarthSidious, DarthMaul];
+var gameOver = false;
 
 $('.character').on("click", function(){
     console.log($(this));
@@ -96,14 +100,18 @@ $('.character').on("click", function(){
         player1 = characterArray[idx];
         $('#player1').html(this);
         firstSelected = true;
+        player1.div.css('background-color', 'deepskyblue');
     }
     else if(firstSelected && !bothSelected){
         player2 = characterArray[idx];
         $('#player2').html(this);
         bothSelected = true;
         $('#attackBtn').css("visibility", "visible");
+        player2.div.css('background-color', '#c82333');
     }
 })
+
+
 
 $('#attackBtn').on("click", function(){
     if(player1.health > 0 && player2.health > 0){
@@ -114,6 +122,7 @@ $('#attackBtn').on("click", function(){
         player2.healthDiv.text(player2.health);
     }
 
+
     console.log(player1.health);
     console.log(player2.health);
 
@@ -121,13 +130,13 @@ $('#attackBtn').on("click", function(){
         console.log("both die");
         dead.push(player1);
         dead.push(player2);
-        startOver();
+        $('#resetBtn').css('visibility', 'visible');
     }
     else if(player1.health <= 0){
         console.log("p1 dies");
         dead.push(player1);
         dead.push(player2);
-        startOver();
+        $('#resetBtn').css('visibility', 'visible');
     }
     else if(player2.health <= 0){
         console.log("p2 dies");
@@ -149,6 +158,7 @@ function startOver(){
         console.log(replace);
         replace.healthDiv.text(replace.health);
         replace.container.html(replace.div);
+        replace.div.css('background-color', 'white');
     }
 
     player1 = undefined;
@@ -156,4 +166,11 @@ function startOver(){
     firstSelected = false;
     bothSelected = false;
     $('#attackBtn').css("visibility", "hidden");
+    $('#resetBtn').css("visibility", "hidden");
 }
+
+$('#resetBtn').on("click", function(){
+        startOver();
+    })
+
+});
